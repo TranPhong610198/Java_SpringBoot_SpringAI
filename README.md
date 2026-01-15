@@ -54,7 +54,7 @@ Trong quá trình học, tôi đã thực hiện các dự án nhỏ để tổn
 ## 📚 Tài Liệu Tham Khảo
 * [Spring Official Documentation](https://spring.io/docs)
 * [Spring AI Reference](https://docs.spring.io/spring-ai/reference/)
-* Khóa học [Java Spring Framework, Spring Boot, Spring AI - Gen AI] - Được chia sẻ từ [Đỗ Trung Hiếu](https://www.facebook.com/kudoxH)
+* Khóa học [Java Spring Framework, Spring Boot, Spring AI - Gen AI](https://www.udemy.com/course/spring-5-with-spring-boot-2/?couponCode=2021PM25) - Được chia sẻ từ [Đỗ Trung Hiếu](https://www.facebook.com/kudoxH)
 
 ---
 *Happy Coding!* 💻
