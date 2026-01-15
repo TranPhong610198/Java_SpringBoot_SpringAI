@@ -1,64 +1,132 @@
-SẴN SÀNG CHO SPRING BOOT
+\# 🚀 Java Core Checklist: Hành Trang Vào Spring Boot
 
-1\. Cú pháp \& Tư duy cơ bản (Level: PRO192) Đây là nền móng. Nếu quên phần này, bạn sẽ không viết được code.
 
-&nbsp;	- Biến \& Kiểu dữ liệu: Phân biệt được int (primitive) và Integer (wrapper class). Tại sao? Vì trong Database và Generic của Spring, chúng ta dùng Wrapper Class.
 
-&nbsp;	- String vs StringBuilder: Hiểu tại sao không nên cộng chuỗi (+) quá nhiều mà nên dùng StringBuilder.
+Tài liệu này tổng hợp các kiến thức nền tảng Java bắt buộc phải nắm vững trước khi đi sâu vào Spring Boot. Mục tiêu là lấp lỗ hổng kiến thức và chuẩn bị tư duy tốt nhất cho Backend Development.
 
-&nbsp;	- Vòng lặp \& Câu điều kiện: if-else, switch-case, for, for-each, while.
 
-&nbsp;	- Mảng (Array): Cách khai báo và truy xuất phần tử cơ bản.
 
-2\. Lập trình hướng đối tượng - OOP (QUAN TRỌNG NHẤT) Spring Boot vận hành hoàn toàn dựa trên các nguyên lý này. Nếu hổng chỗ này, bạn sẽ không hiểu tại sao code lại chạy.
+---
 
-&nbsp;	- Class \& Object: Cách tạo class, tạo object (instance).
 
-&nbsp;	- 4 Tính chất OOP:
 
-&nbsp;		\[ ] Đóng gói (Encapsulation): Hiểu về private, public, protected và Getter/Setter. Spring dùng cái này để map dữ liệu từ JSON vào Object.
+\### 1. Cú pháp \& Tư duy cơ bản (Level: PRO192)
 
-&nbsp;		\[ ] Kế thừa (Inheritance): Từ khóa extends.
+> 💡 \*\*Tầm quan trọng:\*\* Đây là nền móng. Nếu quên phần này, bạn sẽ không thể viết logic code cơ bản.
 
-&nbsp;		\[ ] Đa hình (Polymorphism): Hiểu Override (ghi đè) và Overload (nạp chồng).
 
-&nbsp;		\[ ] Trừu tượng (Abstraction): Abstract Class vs Interface.
 
-&nbsp;		\[ ] Interface: (Cực kỳ quan trọng) Bạn phải hiểu Interface là gì. Vì trong Spring, các Service và Repository đều làm việc qua Interface để lỏng lẻo sự phụ thuộc (Loose Coupling).
+\- \[ ] \*\*Biến \& Kiểu dữ liệu:\*\*
 
-&nbsp;		\[ ] Constructor: Default constructor vs Parameterized constructor.
+&nbsp;   - Phân biệt rõ `int` (primitive) và `Integer` (wrapper class).
 
-&nbsp;		\[ ] Static \& Final: Khi nào dùng biến tĩnh (static), hằng số (final).
+&nbsp;   - \*Lý do:\* Trong Database Mapping và Generic của Spring, bắt buộc phải dùng Wrapper Class.
 
-3\. Java Collections Framework (Cấu trúc dữ liệu)Làm Backend là xử lý danh sách dữ liệu. Bạn không thể sống thiếu phần này.
+\- \[ ] \*\*String vs StringBuilder:\*\*
 
-&nbsp;	- List (ArrayList, LinkedList): Biết cách thêm, sửa, xóa, duyệt danh sách.
+&nbsp;   - Hiểu cơ chế Immutable của String.
 
-&nbsp;	- Set (HashSet): Tập hợp không chứa phần tử trùng lặp.
+&nbsp;   - \*Lưu ý:\* Tránh dùng cộng chuỗi (`+`) trong vòng lặp, hãy dùng `StringBuilder` để tối ưu hiệu năng.
 
-&nbsp;	- Map (HashMap, TreeMap): Lưu trữ dạng Key-Value. Rất quan trọng khi xử lý JSON hoặc cấu hình.
+\- \[ ] \*\*Control Flow (Luồng điều khiển):\*\*
 
-&nbsp;	- Generics: Hiểu cái dấu ngoặc nhọn \\<T\\>. Ví dụ: List\\<String\\>, Map\\<String, User\\>. Spring Data JPA dùng cái này dày đặc.
+&nbsp;   - Thành thạo `if-else`, `switch-case`.
 
-4\. Java Modern (Java 8+)Code Spring Boot hiện đại không ai viết theo kiểu Java 5 ngày xưa. Bạn cần biết các tính năng mới này để code ngắn gọn.
+&nbsp;   - Các loại vòng lặp: `for`, `for-each`, `while`.
 
-&nbsp;	- Lambda Expressions: Viết hàm ẩn danh ngắn gọn () -> {}.
+\- \[ ] \*\*Mảng (Array):\*\* Cách khai báo, khởi tạo và truy xuất phần tử cơ bản.
 
-&nbsp;	- Stream API: Cách lọc (filter), ánh xạ (map), sắp xếp (sorted) một List mà không cần dùng vòng lặp for truyền thống.
 
-&nbsp;	- Optional: Cách xử lý lỗi NullPointerException một cách thanh lịch.
 
-5\. Xử lý lỗi (Exception Handling)
+\### 2. Lập trình hướng đối tượng - OOP (🔥 QUAN TRỌNG NHẤT)
 
-&nbsp;	- Try - Catch - Finally: Bắt lỗi cơ bản.
+> 💡 \*\*Tầm quan trọng:\*\* Spring Boot vận hành hoàn toàn dựa trên các nguyên lý này (DI/IoC). Nếu hổng chỗ này, bạn sẽ chỉ biết copy code mà không hiểu bản chất.
 
-&nbsp;	- Throw vs Throws: Cách ném lỗi ra ngoài.
 
-&nbsp;	- Custom Exception: Tự tạo ra lỗi riêng (ví dụ: UserNotFoundException).
 
-6\. Các khái niệm bổ trợ (Cần cho Spring)
+\- \[ ] \*\*Class \& Object:\*\* Tư duy về Lớp và Đối tượng (Instance).
 
-&nbsp;	- Annotation: Hiểu các ký hiệu bắt đầu bằng @ (ví dụ @Override). Spring Boot là thiên đường của Annotation (@Component, @Service, @Controller).
+\- \[ ] \*\*4 Tính chất OOP:\*\*
 
-&nbsp;	- Maven/Gradle: Biết file pom.xml dùng để làm gì (quản lý thư viện).
+&nbsp;   - \[ ] \*\*Đóng gói (Encapsulation):\*\* Hiểu về `private`, `public`, `protected`. Sử dụng Getter/Setter (Spring dùng cái này để map JSON vào Object).
+
+&nbsp;   - \[ ] \*\*Kế thừa (Inheritance):\*\* Sử dụng từ khóa `extends`.
+
+&nbsp;   - \[ ] \*\*Đa hình (Polymorphism):\*\* Phân biệt Override (ghi đè) và Overload (nạp chồng).
+
+&nbsp;   - \[ ] \*\*Trừu tượng (Abstraction):\*\* Phân biệt `Abstract Class` vs `Interface`.
+
+\- \[ ] \*\*Interface (Cực kỳ quan trọng):\*\*
+
+&nbsp;   - Hiểu bản chất Interface là bản thiết kế hành vi.
+
+&nbsp;   - \*Ứng dụng:\* Trong Spring, Service và Repository giao tiếp qua Interface để đảm bảo Loose Coupling (Lỏng lẻo sự phụ thuộc).
+
+\- \[ ] \*\*Constructor:\*\* Default constructor vs Parameterized constructor.
+
+\- \[ ] \*\*Static \& Final:\*\* Khi nào dùng biến tĩnh (`static`), hằng số (`final`).
+
+
+
+\### 3. Java Collections Framework
+
+> 💡 \*\*Tầm quan trọng:\*\* Làm Backend thực chất là xử lý danh sách dữ liệu. Bạn không thể sống thiếu phần này.
+
+
+
+\- \[ ] \*\*List (ArrayList, LinkedList):\*\* Các thao tác thêm, sửa, xóa, duyệt danh sách.
+
+\- \[ ] \*\*Set (HashSet):\*\* Xử lý tập hợp không chứa phần tử trùng lặp.
+
+\- \[ ] \*\*Map (HashMap, TreeMap):\*\*
+
+&nbsp;   - Lưu trữ dạng Key-Value.
+
+&nbsp;   - \*Ứng dụng:\* Rất quan trọng khi xử lý cấu hình (Config) hoặc dữ liệu JSON động.
+
+\- \[ ] \*\*Generics:\*\*
+
+&nbsp;   - Hiểu ý nghĩa dấu ngoặc nhọn `<T>`.
+
+&nbsp;   - Ví dụ: `List<String>`, `Map<String, User>`. Spring Data JPA dùng cái này dày đặc.
+
+
+
+\### 4. Java Modern (Java 8+)
+
+> 💡 \*\*Tầm quan trọng:\*\* Code Spring Boot hiện đại yêu cầu sự ngắn gọn. Không ai viết code theo kiểu Java 5 cũ kỹ nữa.
+
+
+
+\- \[ ] \*\*Lambda Expressions:\*\* Viết hàm ẩn danh ngắn gọn `() -> {}`.
+
+\- \[ ] \*\*Stream API:\*\*
+
+&nbsp;   - Tư duy xử lý dữ liệu dạng dòng chảy.
+
+&nbsp;   - Các hàm phổ biến: `filter`, `map`, `sorted` (thay thế cho vòng lặp for truyền thống).
+
+\- \[ ] \*\*Optional:\*\* Cách xử lý lỗi `NullPointerException` một cách thanh lịch, tránh crash ứng dụng.
+
+
+
+\### 5. Xử lý lỗi (Exception Handling)
+
+\- \[ ] \*\*Try - Catch - Finally:\*\* Cấu trúc bắt lỗi cơ bản.
+
+\- \[ ] \*\*Throw vs Throws:\*\* Phân biệt ném lỗi chủ động và khai báo lỗi.
+
+\- \[ ] \*\*Custom Exception:\*\* Tự tạo Exception riêng (ví dụ: `UserNotFoundException`).
+
+
+
+\### 6. Các khái niệm bổ trợ (Spring Essentials)
+
+\- \[ ] \*\*Annotation:\*\*
+
+&nbsp;   - Hiểu các ký hiệu bắt đầu bằng `@` (ví dụ `@Override`).
+
+&nbsp;   - \*Chuẩn bị:\* Spring Boot là thiên đường của Annotation (`@Component`, `@Service`, `@Controller`).
+
+\- \[ ] \*\*Maven/Gradle:\*\* Hiểu file `pom.xml` dùng để quản lý thư viện (Dependency Management).
 
