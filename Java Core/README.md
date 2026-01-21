@@ -243,7 +243,7 @@ Tài liệu này tổng hợp các kiến thức nền tảng Java bắt buộc 
 
 ### 🧱 Dependency Injection & Testability
 <detials>
-<summary><em>DI</em></summary>
+    <summary><em>DI</em></summary>
 
 <details>
 <summary>🔌 <em>Tại sao cần Interface & DI? (Đọc kỹ cho đồ án)</em></summary>
