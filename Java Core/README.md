@@ -242,6 +242,9 @@ Tài liệu này tổng hợp các kiến thức nền tảng Java bắt buộc 
 ---
 
 ### 🧱 Dependency Injection & Testability
+<detials>
+<summary><em>DI</em></summary>
+
 <details>
 <summary>🔌 <em>Tại sao cần Interface & DI? (Đọc kỹ cho đồ án)</em></summary>
 
@@ -270,10 +273,14 @@ Trong các dự án thực tế (và đồ án sắp tới), cấu trúc này xu
 
 - [ ] **Constructor:** Default constructor vs Parameterized constructor.
 - [ ] **Static & Final:** Khi nào dùng biến tĩnh (`static`), hằng số (`final`).
+</details>
 
 ---
 
 ## 3. Java Collections Framework
+<details> 
+    <summary><em>Collections</em></summary>
+
 > 💡 **Tầm quan trọng:** Làm Backend thực chất là xử lý danh sách dữ liệu. Bạn không thể sống thiếu phần này.
 
 - [ ] **List (ArrayList, LinkedList):** Các thao tác thêm, sửa, xóa, duyệt danh sách.
@@ -302,10 +309,14 @@ Trong các dự án thực tế (và đồ án sắp tới), cấu trúc này xu
     - Hiểu ý nghĩa dấu ngoặc nhọn `<T>`.
     - Ví dụ: `List<String>`, `Map<String, User>`. Spring Data JPA dùng cái này dày đặc.
     </details>
+</details>
 
 ---
 
 ## 4. Java Modern (Java 8+)
+<details> 
+    <summary><em>J Mordern là gì</em></summary>
+
 > 💡 **Tầm quan trọng:** Code Spring Boot hiện đại yêu cầu sự ngắn gọn. Không ai viết code theo kiểu Java 5 cũ kỹ nữa.
 
 - [ ] **Lambda Expressions:** Viết hàm ẩn danh ngắn gọn `() -> {}`.
@@ -318,6 +329,7 @@ Trong các dự án thực tế (và đồ án sắp tới), cấu trúc này xu
     </details>
 
 - [ ] **Optional:** Cách xử lý lỗi `NullPointerException` một cách thanh lịch, tránh crash ứng dụng.
+</details>
 
 ---
 
