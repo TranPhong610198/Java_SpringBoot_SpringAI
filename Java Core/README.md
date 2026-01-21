@@ -6,7 +6,7 @@ Tài liệu này tổng hợp các kiến thức nền tảng Java bắt buộc 
 
 ## 1. Cú pháp & Tư duy cơ bản (Level: PRO192)
 <details> 
-    <summary>🔻 <em>Cú pháp cơ bản & kiến thức nền tảng</em></summary>
+    <summary><em>Cú pháp cơ bản & kiến thức nền tảng</em></summary>
 
 > 💡 **Tầm quan trọng:** Đây là nền móng. Nếu quên phần này, bạn sẽ không thể viết logic code cơ bản.
 
@@ -48,9 +48,13 @@ Tài liệu này tổng hợp các kiến thức nền tảng Java bắt buộc 
 
 - [x] **Mảng (Array):** Cách khai báo, khởi tạo và truy xuất phần tử cơ bản.
 </details>
+
 ---
 
 ## 2. Lập trình hướng đối tượng - OOP (🔥 QUAN TRỌNG NHẤT)
+<details> 
+    <summary><em>Kiến thức cần nhớ về OOP</em></summary>
+
 > 💡 **Tầm quan trọng:** Spring Boot vận hành hoàn toàn dựa trên các nguyên lý này (DI/IoC). Nếu hổng chỗ này, bạn sẽ chỉ biết copy code mà không hiểu bản chất.
 
 - [x] **Class & Object:** Tư duy về Lớp và Đối tượng (Instance).
@@ -231,6 +235,8 @@ Tài liệu này tổng hợp các kiến thức nền tảng Java bắt buộc 
         }
         ```
     - *Ứng dụng:* Trong Spring, Service và Repository giao tiếp qua Interface để đảm bảo Loose Coupling (Lỏng lẻo sự phụ thuộc).
+</details>
+
 </details>
 
 ---
