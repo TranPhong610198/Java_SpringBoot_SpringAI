@@ -66,7 +66,7 @@ Tài liệu này tổng hợp các kiến thức nền tảng Java bắt buộc 
     </details>
 
 <details> 
-<summary> <p3> 🌟 4 Tính chất OOP </p3></summary>
+    <summary> <p3> 🌟 4 Tính chất OOP </p3></summary>
 
 #### 1. Đóng gói (Encapsulation)
 <details>
@@ -213,6 +213,7 @@ Tài liệu này tổng hợp các kiến thức nền tảng Java bắt buộc 
             }
         }
         ```
+</details>
 
 - **Interface (Cực kỳ quan trọng):** Như một Bản Hợp Đồng (Contract) hoặc Khả Năng (Capability).
     - Không phải là 1 class, mà là một tập hợp các quy định.
