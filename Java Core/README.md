@@ -1,75 +1,106 @@
 # 🚀 Java Core Checklist: Hành Trang Vào Spring Boot
 
-> **Giới thiệu:** Tài liệu này tổng hợp các kiến thức nền tảng Java bắt buộc phải nắm vững trước khi đi sâu vào Spring Boot. Mục tiêu là lấp lỗ hổng kiến thức và chuẩn bị tư duy tốt nhất cho Backend Development.
+Tài liệu này tổng hợp các kiến thức nền tảng Java bắt buộc phải nắm vững trước khi đi sâu vào Spring Boot. Mục tiêu là lấp lỗ hổng kiến thức và chuẩn bị tư duy tốt nhất cho Backend Development.
 
 ---
 
 ## 1. Cú pháp & Tư duy cơ bản (Level: PRO192)
 > 💡 **Tầm quan trọng:** Đây là nền móng. Nếu quên phần này, bạn sẽ không thể viết logic code cơ bản.
 
-- [x] **Biến & Kiểu dữ liệu**
-    - [x] Phân biệt `int` (primitive) và `Integer` (wrapper class).
-    <details>
-    <summary>📝 <em>Xem chi tiết sự khác biệt</em></summary>
-    
-    * **`int` (Primitive):** Lưu giá trị thực tế, nhẹ, nhanh, **không** dùng được trong Collection.
-    * **`Integer` (Wrapper Class):** Là Object trỏ tới vùng nhớ, có method hỗ trợ (`.parseInt()`, ...), **dùng được** trong Collection.
-    * *Lý do:* Trong Database Mapping (Hibernate) và Generic của Spring, bắt buộc phải dùng Wrapper Class.
-    </details>
+- [x] **Biến & Kiểu dữ liệu:**
+    - **Phân biệt rõ `int` (primitive) và `Integer` (wrapper class):**
+        - `int` (primitive): Là một trong những kiểu dữ liệu nguyên thủy lưu giá trị thực tế, **không** dùng được trong Collection.
+        - `Integer` (wrapper class): Là một đối tượng trỏ tới vùng nhớ chứa giá trị. Vì là một đối tượng nên nó có nhiều hàm hỗ trợ, và **dùng được** trong Collection.
+        - *Collection Framework:* Trong Java, Collection nằm trong gói `java.util`, cung cấp các Interface và Class để lưu trữ nhóm đối tượng. Chia làm 3 nhóm chính (List, Set, Queue) và 1 nhóm đặc biệt (`Map`).
+        - *Lý do:* Trong Database Mapping và Generic của Spring, bắt buộc phải dùng Wrapper Class.
 
-- [x] **String vs StringBuilder**
-    - [x] Hiểu cơ chế **Immutable** (Bất biến) của String.
-    <details>
-    <summary>📝 <em>Tại sao String lại bất biến?</em></summary>
+- [x] **String vs StringBuilder:**
+    - **Hiểu cơ chế Immutable của String:**
+        - **"Immutable"** nghĩa là **"Không thể thay đổi"**. Trong Java, một khi đối tượng `String` đã được tạo ra trong bộ nhớ (Heap), nội dung của nó **vĩnh viễn không bao giờ thay đổi**.
+        - *Ví dụ:*
+            ```java
+            String s = "Hello";
+            s = s + " World";
+            // Có vẻ biến s đã thay đổi từ "Hello" sang "Hello World".
+            // Thực ra: JAVA ko sửa chữ "Hello" mà nó tạo một chuỗi mới "Hello World" và chuyển con trỏ của biến s sang "Hello World".
+            ```
+    - **Lưu ý:** Tránh dùng cộng chuỗi (`+`) trong vòng lặp, hãy dùng `StringBuilder` để tối ưu hiệu năng.
+        - **StringBuilder (Mutable):** Nó như cái bảng trắng, khi bạn muốn thêm chữ thì chỉ cần viết tiếp vào, không cần thay bảng mới. Bên trong `StringBuilder` là 1 mảng kí tự `char[]`. Khi `append()`, nó sẽ điền tiếp vào mảng. Khi mảng đầy, nó tự động tạo ra mảng mới to gấp đôi, copy dữ liệu sang rồi dùng tiếp.
 
-    ```java
-    String s = "Hello";
-    s = s + " World";
-    // Java KO sửa chữ "Hello".
-    // Java tạo chuỗi MỚI "Hello World" và trỏ s vào đó.
-    ```
-    </details>
-    
-    - [x] **StringBuilder (Mutable):** Dùng khi cần cộng chuỗi trong vòng lặp để tối ưu hiệu năng (tránh tạo rác bộ nhớ).
+- [x] **Control Flow (Luồng điều khiển):**
+    - Thành thạo `if-else`, `switch-case`.
+    - Các loại vòng lặp: `for`, `for-each`, `while`.
 
-- [x] **Control Flow (Luồng điều khiển)**
-    - [x] Thành thạo `if-else`, `switch-case`.
-    - [x] Các loại vòng lặp: `for`, `for-each`, `while`.
-
-- [x] **Mảng (Array):** Cách khai báo, khởi tạo và truy xuất.
+- [x] **Mảng (Array):** Cách khai báo, khởi tạo và truy xuất phần tử cơ bản.
 
 ---
 
 ## 2. Lập trình hướng đối tượng - OOP (🔥 QUAN TRỌNG NHẤT)
-> 💡 **Tầm quan trọng:** Spring Boot vận hành hoàn toàn dựa trên các nguyên lý này (DI/IoC).
+> 💡 **Tầm quan trọng:** Spring Boot vận hành hoàn toàn dựa trên các nguyên lý này (DI/IoC). Nếu hổng chỗ này, bạn sẽ chỉ biết copy code mà không hiểu bản chất.
 
-- [x] **Class & Object:**
-    - **Class:** Bản vẽ thiết kế (Trừu tượng).
-    - **Object:** Vật thể cụ thể tạo từ bản vẽ (Instance).
+- [x] **Class & Object:** Tư duy về Lớp và Đối tượng (Instance).
+    - **Class:** Là bản vẽ thiết kế, là 1 khái niệm trừu tượng, nằm trên giấy tờ.
+    - **Object:** Là vật cụ thể đc tạo từ bản vẽ (Class).
 
-- [x] **4 Tính chất OOP**
-    
-    ### A. Đóng gói (Encapsulation)
-    - [x] Hiểu `private`, `public`, `protected`.
-    - [x] **Getter/Setter:** Dùng để map JSON hoặc Entity. *Tip: Dùng Lombok để đỡ gõ tay.*
-    <details>
-    <summary>🛡️ <em>Kinh nghiệm về Access Modifiers</em></summary>
-    
-    * **Private:** Mặc định luôn dùng cái này.
-    * **Protected:** Dùng khi viết thư viện hoặc cần class con kế thừa.
-    * **Public:** Chỉ dùng cho API, Hằng số (Constant).
-    </details>
+### 🌟 4 Tính chất OOP
 
-    ### B. Kế thừa (Inheritance)
-    - [x] Từ khóa `extends`. Quan hệ **Is-A**.
-    - [x] `super`, `@Override`.
-    <details>
-    <summary>⚠️ <em>Lưu ý quan trọng: Composition over Inheritance</em></summary>
-    
-    Hạn chế `extends` nếu không cần thiết vì gây **Tight Coupling** (dính chặt). Hãy ưu tiên ghép nối (Composition - **Has-A**).
-    
+#### 1. Đóng gói (Encapsulation)
+Hiểu về `private`, `public`, `protected`. Sử dụng Getter/Setter (Spring dùng cái này để map JSON vào Object).
+- **Định nghĩa:** Đóng gói chính là việc che giấu dữ liệu bên trong, chỉ lộ ra những cái cần thiết (method) ra bên ngoài.
+- **4 cấp độ bảo mật (Access Modifiers):**
+    - `Private`: Chỉ nội bộ class mới thấy.
+        - *Kinh nghiệm:* Mặc định luôn để private cho tất cả các thuộc tính, chỉ mở rộng khi thực sự cần thiết.
+    - `Protected`: Cùng package, lớp con mới thấy.
+        - *Kinh nghiệm:* Dùng khi thiết kế thư viện hoặc Framework để cho phép class con override.
+    - `Public`: Toàn bộ dự án có thể dùng.
+        - *Kinh nghiệm:* Chỉ dùng cho các hàm API, các hằng số, hoặc class chính.
+- **Getter/Setter:** Dùng để kiểm soát dữ liệu (Read-only hoặc Write-only), và đặc biệt tương thích với Framework.
+    - *Kinh nghiệm:* Thay vì ngồi gõ một đống Getter/Setter cho 10 class entity thì có thể dùng **Lombok**.
+
+#### 2. Kế thừa (Inheritance)
+Sử dụng từ khóa `extends`.
+- **Bản chất:** Kế thừa hay chính là quan hệ **Is-A**, ví dụ `Dog` **is an** `Animal` → Hợp lý.
     ```java
-    // Composition: Window CÓ MỘT Rectangle
+    // Lớp Cha (Super Class / Parent Class)
+    class Animal {
+        protected String name; // protected để con cháu dùng được
+        public void eat() {
+            System.out.println("Đang ăn...");
+        }
+    }
+    // Lớp Con (Sub Class / Child Class)
+    class Dog extends Animal { // Dog kế thừa TẤT CẢ từ Animal
+        public void bark() {
+            System.out.println("Gâu gâu!");
+        }
+    }
+    public class Main {
+        public static void main(String[] args) {
+            Dog dog = new Dog();
+            dog.name = "Milu"; // Dùng tài sản của cha
+            dog.eat();         // Dùng hành động của cha
+            dog.bark();        // Hành động riêng của con
+        }
+    }
+    ```
+- **Các từ khóa quan trọng:**
+    - `super`: Đại diện cho lớp cha, dùng để gọi hàm của cha khi lỡ bị con ghi đè.
+    - `@Override`: Khi lớp con ko thích cách triển khai của lớp cha, muốn làm khác đi.
+        ```java
+        class Bird extends Animal {
+            @Override
+            public void move(){
+                System.out.println("Đang bay...");
+            }
+        }
+        ```
+- **Lưu ý về Đa kế thừa:** Trong Java không cho phép đa kế thừa Class (vì dễ dẫn đến xung đột method). Nhưng Java cho phép đa kế thừa Interface.
+- **Góc nhìn kinh nghiệm: Composition over Inheritance**
+    - Tức là ưu tiên **ghép nối** hơn là kế thừa.
+    - Kế thừa tuy mạnh nhưng lại dẫn đến *Tight Coupling*, nếu sửa code ở cha, tất cả các thằng con sẽ bị ảnh hưởng.
+    - *Vì thế:* Hạn chế `extends` nếu không thực sự cần thiết. Thay vào đó, hãy dùng Composition (Thành phần).
+    ```java
+    // Composition: Window CÓ MỘT (Has-A) Rectangle 
     class Window { 
         private Rectangle rect = new Rectangle(); 
         public void draw() {
@@ -77,80 +108,169 @@
         } 
     }
     ```
-    </details>
 
-    ### C. Đa hình (Polymorphism)
-    - [x] **Overloading (Nạp chồng):** Cùng tên hàm, khác tham số (Compile-time).
-    - [x] **Overriding (Ghi đè):** Class con viết lại hàm của class cha (Run-time).
-    <details>
-    <summary>🧩 <em>Ví dụ Đa hình động (Upcasting)</em></summary>
-    
+#### 3. Đa hình (Polymorphism)
+Phân biệt Override (ghi đè) và Overload (nạp chồng).
+- **Đa hình tĩnh (Static) - Method Overloading:**
+    - Cùng tên hàm, nhưng khác tham số.
+    - *Tại sao cần?* Để người dùng đỡ phải nhớ nhiều tên hàm.
     ```java
-    Animal a = new Dog(); // Khai báo Cha, khởi tạo Con
-    a.speak(); // Chạy hàm của Dog (Go Go)
-    ```
-    </details>
-
-    ### D. Trừu tượng (Abstraction) & Interface
-    - [x] Phân biệt `Abstract Class` vs `Interface`.
-
-    | Đặc điểm | Abstract Class | Interface |
-    | :--- | :--- | :--- |
-    | **Bản chất** | Bản thiết kế dở dang | Bản hợp đồng (Contract) / Khả năng (Capability) |
-    | **Từ khóa** | `extends` | `implements` |
-    | **Đa kế thừa** | Không (Chỉ 1 cha) | Có (Nhiều Interface) |
-    | **Dữ liệu** | Có thể có state (biến) | Chỉ có hằng số (static final) |
-    | **Khi nào dùng** | Các class có quan hệ cha-con chặt chẽ | Quy định hành vi cho các class ko liên quan |
-
-- [x] **Dependency Injection (DI) & Testability**
-    > 🎯 **Lời khuyên cho đồ án:** Luôn bắt đầu bằng Interface cho tầng Service (`UserService` -> `UserServiceImpl`).
-    <details>
-    <summary>🔌 <em>Tại sao phải tách Interface và Impl?</em></summary>
-    
-    1.  **Linh hoạt:** Đổi từ SQL sang MongoDB chỉ cần viết class Impl mới, không sửa Controller.
-    2.  **Testability:** Dễ dàng Mock (giả lập) dữ liệu để test Controller mà không cần DB thật.
-    
-    ```java
-    @RestController
-    public class UserController {
-        @Autowired
-        private UserService userService; // Gọi Interface, KHÔNG gọi Class cụ thể
+    class Calculator {
+        // Cộng 2 số nguyên
+        int add(int a, int b){ return a+b; }
+        // Cộng 3 số nguyên
+        int add(int a, int b, int c){ return a+b+c; }
     }
     ```
-    </details>
+- **Đa hình động (Dynamic) - Method Overriding (Trùm cuối):**
+    - Kỹ thuật **Upcasting** (Ép kiểu lên): Khai báo kiểu Cha, nhưng khởi tạo đối tượng kiểu Con.
+    ```java
+    // Cha
+    class Animal { void speak() { System.out.println("..."); } }
+    
+    // Con1
+    class Dog extends Animal {
+        @Override
+        void speak() { System.out.println("Go Go"); }
+    }
+    
+    // Con2
+    class Cat extends Animal {
+        @Override
+        void speak() { System.out.println("Meow meow"); }
+    }
+    
+    public class Main {
+        public static void main(String[] args){
+            Animal a;
+            
+            a = new Dog();
+            a.speak(); // Output: Go Go
+            
+            a = new Cat();
+            a.speak(); // Output: Meow meow
+        }
+    }
+    ```
+
+#### 4. Trừu tượng (Abstraction)
+Phân biệt `Abstract Class` vs `Interface`.
+
+- **Abstract Class:** Là một bản thiết kế dở dang, chứa các hàm trừu tượng (abstract method) - chỉ có tên hàm mà ko có ruột.
+    - *Quy tắc:*
+        - Class con kế thừa bắt buộc phải viết code cho các hàm trừu tượng đó.
+        - Dùng abstract class khi muốn các class con chia sẻ code chung nhưng bắt chúng phải tự định nghĩa một vài hành động riêng.
+    - *Ví dụ:*
+        ```java
+        // Abstract Class: NhanVien
+        abstract class Employee {
+            String name;
+            // Hàm thường: ai cũng cần -> Viết sẵn
+            void checkin(){
+                System.out.println("Quẹt thẻ chấm công");
+            }
+            // Hàm trừu tượng
+            abstract double calculateSalary();
+        }
+        class Dev extends Employee {
+            @Override
+            double calculateSalary(){
+                return 2000 * 1.5; 
+            }
+        }
+        ```
+
+- **Interface (Cực kỳ quan trọng):** Như một Bản Hợp Đồng (Contract) hoặc Khả Năng (Capability).
+    - Không phải là 1 class, mà là một tập hợp các quy định.
+    - Tất cả các hàm bên trong đều mặc định là `public abstract`.
+    - Một Class có thể `implements` nhiều Interface cùng lúc.
+    - Dùng Interface khi muốn quy định hành vi cho các Class không liên quan gì đến nhau.
+    - *Ví dụ:*
+        ```java
+        interface Flyable { 
+            void fly(); // Hợp đồng: Ai ký cái này thì phải biết bay 
+        } 
+        class Bird extends Animal implements Flyable { 
+            public void fly() { 
+                System.out.println("Vỗ cánh bay"); 
+            } 
+        } 
+        class Airplane implements Flyable { 
+            public void fly() { 
+                System.out.println("Dùng động cơ phản lực"); 
+            } 
+        }
+        ```
+    - *Ứng dụng:* Trong Spring, Service và Repository giao tiếp qua Interface để đảm bảo Loose Coupling (Lỏng lẻo sự phụ thuộc).
+
+---
+
+### 🧱 Dependency Injection & Testability
+Trong các dự án thực tế (và đồ án sắp tới), cấu trúc này xuất hiện liên tục:
+1. `UserService` (Interface): Định nghĩa xem service này làm được gì.
+2. `UserServiceImpl` (Class): Code chi tiết thực hiện các việc đó.
+
+- **Tại sao phải tách ra làm 2 file?** -> Vì **Dependency Injection (DI)** và **Testability**.
+    - Khi viết Controller, chỉ gọi Interface:
+        ```java
+        @RestController
+        public class UserController {
+            @Autowired
+            // Gọi Interface, không gọi Impl cụ thể
+            private UserService userService; 
+            // ...
+        }
+        ```
+    - **Linh hoạt:** Hôm nay `userService` chạy SQL. Mai chuyển sang MongoDB, chỉ cần viết `UserServiceMongoImpl` implement Interface cũ. Controller **không cần sửa một dòng nào**.
+    - **Test:** Khi viết Unit Test, có thể tạo `FakeUserService` để test Controller mà không cần DB thật.
+
+> 🎓 **Lời khuyên cho đồ án tốt nghiệp:**
+> * **Với Entity (Dữ liệu):** Dùng Class bình thường.
+> * **Với Service/Logic:** **Luôn bắt đầu bằng Interface**. Viết Interface trước để định hình input/output, sau đó mới viết class `Impl`. Đây gọi là **"Interface-driven development"**.
+
+- [ ] **Constructor:** Default constructor vs Parameterized constructor.
+- [ ] **Static & Final:** Khi nào dùng biến tĩnh (`static`), hằng số (`final`).
 
 ---
 
 ## 3. Java Collections Framework
-> 💡 **Tầm quan trọng:** Backend thực chất là xử lý danh sách dữ liệu.
+> 💡 **Tầm quan trọng:** Làm Backend thực chất là xử lý danh sách dữ liệu. Bạn không thể sống thiếu phần này.
 
-- [ ] **List (ArrayList, LinkedList):**
-    - **ArrayList:** Dùng 98% trường hợp (truy xuất nhanh).
-- [ ] **Set (HashSet):** Tập hợp không trùng lặp.
+- [ ] **List (ArrayList, LinkedList):** Các thao tác thêm, sửa, xóa, duyệt danh sách.
+    - **ArrayList (Mảng động) - Dùng 98% trường hợp:**
+        - Bên trong nó là 1 mảng bình thường.
+        - Cơ chế động: Khi mảng đầy, nó tự tạo 1 mảng to hơn (thường gấp 1.5 lần), copy toàn bộ dữ liệu cũ sang rồi vứt mảng cũ đi.
+        - Ưu điểm: Truy cập cực nhanh vì tính toán được địa chỉ ô nhớ.
+- [ ] **Set (HashSet):** Xử lý tập hợp không chứa phần tử trùng lặp.
 - [ ] **Map (HashMap, TreeMap):**
-    - Lưu Key-Value. Cực quan trọng cho Config và JSON.
-- [ ] **Generics:** Hiểu `<T>`, ví dụ `List<String>`, `Map<String, User>`.
+    - Lưu trữ dạng Key-Value.
+    - *Ứng dụng:* Rất quan trọng khi xử lý cấu hình (Config) hoặc dữ liệu JSON động.
+- [ ] **Generics:**
+    - Hiểu ý nghĩa dấu ngoặc nhọn `<T>`.
+    - Ví dụ: `List<String>`, `Map<String, User>`. Spring Data JPA dùng cái này dày đặc.
 
 ---
 
 ## 4. Java Modern (Java 8+)
-> 💡 **Tầm quan trọng:** Code Spring Boot hiện đại yêu cầu sự ngắn gọn.
+> 💡 **Tầm quan trọng:** Code Spring Boot hiện đại yêu cầu sự ngắn gọn. Không ai viết code theo kiểu Java 5 cũ kỹ nữa.
 
-- [ ] **Lambda Expressions:** `() -> {}`.
-- [ ] **Stream API:** Tư duy dòng chảy (`filter`, `map`, `sorted`).
-- [ ] **Optional:** Xử lý `NullPointerException` thanh lịch.
+- [ ] **Lambda Expressions:** Viết hàm ẩn danh ngắn gọn `() -> {}`.
+- [ ] **Stream API:**
+    - Tư duy xử lý dữ liệu dạng dòng chảy.
+    - Các hàm phổ biến: `filter`, `map`, `sorted` (thay thế cho vòng lặp for truyền thống).
+- [ ] **Optional:** Cách xử lý lỗi `NullPointerException` một cách thanh lịch, tránh crash ứng dụng.
 
 ---
 
 ## 5. Xử lý lỗi (Exception Handling)
-
-- [ ] **Try - Catch - Finally**
-- [ ] **Throw vs Throws**
-- [ ] **Custom Exception:** Ví dụ `UserNotFoundException`.
+- [ ] **Try - Catch - Finally:** Cấu trúc bắt lỗi cơ bản.
+- [ ] **Throw vs Throws:** Phân biệt ném lỗi chủ động và khai báo lỗi.
+- [ ] **Custom Exception:** Tự tạo Exception riêng (ví dụ: `UserNotFoundException`).
 
 ---
 
 ## 6. Các khái niệm bổ trợ (Spring Essentials)
-
-- [ ] **Annotation:** Các ký hiệu `@` (ví dụ `@Override`, `@Component`, `@Service`).
-- [ ] **Maven/Gradle:** Quản lý thư viện (`pom.xml` hoặc `build.gradle`).
+- [ ] **Annotation:**
+    - Hiểu các ký hiệu bắt đầu bằng `@` (ví dụ `@Override`).
+    - *Chuẩn bị:* Spring Boot là thiên đường của Annotation (`@Component`, `@Service`, `@Controller`).
+- [ ] **Maven/Gradle:** Hiểu file `pom.xml` dùng để quản lý thư viện (Dependency Management).
