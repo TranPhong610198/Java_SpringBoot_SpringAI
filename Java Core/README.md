@@ -65,7 +65,8 @@ Tài liệu này tổng hợp các kiến thức nền tảng Java bắt buộc 
     - **Object:** Là vật cụ thể đc tạo từ bản vẽ (Class).
     </details>
 
-### 🌟 4 Tính chất OOP
+<details> 
+<summary> <p3> 🌟 4 Tính chất OOP </p3></summary>
 
 #### 1. Đóng gói (Encapsulation)
 <details>
