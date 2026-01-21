@@ -242,7 +242,7 @@ Tài liệu này tổng hợp các kiến thức nền tảng Java bắt buộc 
 ---
 
 ### 🧱 Dependency Injection & Testability
-<detials>
+<details>
     <summary><em>DI</em></summary>
 
 <details>
