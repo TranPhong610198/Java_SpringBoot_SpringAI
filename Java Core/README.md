@@ -5,8 +5,11 @@ Tài liệu này tổng hợp các kiến thức nền tảng Java bắt buộc 
 ---
 
 ## 1. Cú pháp & Tư duy cơ bản (Level: PRO192)
+<details> 
+    <summary>🔻 <em>Cú pháp cơ bản & kiến thức nền tảng</em></summary>
+
 > 💡 **Tầm quan trọng:** Đây là nền móng. Nếu quên phần này, bạn sẽ không thể viết logic code cơ bản.
-<details>
+
 - [x] **Biến & Kiểu dữ liệu**
     <details>
     <summary>🔻 <em>Phân biệt int vs Integer & Collection Framework</em></summary>
